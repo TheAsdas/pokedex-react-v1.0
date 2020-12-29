@@ -1,14 +1,21 @@
-import React, { useContext, useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { FilterContent } from "../FilterContent";
+import { setFilter } from "../redux/actions/filter";
+import { IFilterState } from "../redux/reducers/filterReducer";
+import { RootState } from "../redux/reducers/rootReducer";
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
-  let filter = useContext(FilterContent);
+  const dispatch = useDispatch();
 
-  const handleSearchChange = (e: React.FormEvent<HTMLInputElement>) => {
-    filter.setFilter((e.target as any).value);
+  const { filter } = useSelector<RootState, IFilterState>(
+    (state) => state.filter
+  );
+
+  const handleSearchChange = (e: any) => {
+    dispatch(setFilter(e.target.value));
   };
 
   const form = (
@@ -32,20 +39,16 @@ export const Navbar: React.FC = () => {
           />
         </svg>
       </label>
-      <FilterContent.Consumer>
-        {(filter) => (
-          <input
-            required
-            id="inputSearch"
-            type="text"
-            name="inputSearch"
-            className="form-control"
-            autoComplete="off"
-            onChangeCapture={handleSearchChange}
-            value={filter.filter}
-          />
-        )}
-      </FilterContent.Consumer>
+      <input
+        required
+        id="inputSearch"
+        type="text"
+        name="inputSearch"
+        className="form-control"
+        autoComplete="off"
+        onChangeCapture={handleSearchChange}
+        value={filter}
+      />
     </div>
   );
 

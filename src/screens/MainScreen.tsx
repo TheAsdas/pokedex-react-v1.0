@@ -1,18 +1,23 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { PokemonCard } from "../components/PokemonCard";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { getPokemons } from "../helpers/pokeApiProvider";
 import { Pokemon } from "../interfaces/PokeApiResponse";
-import { FilterContent } from "../FilterContent";
+import { RootState } from "../redux/reducers/rootReducer";
+import { IFilterState } from "../redux/reducers/filterReducer";
+import { useSelector } from "react-redux";
 
 // https://pokeapi.co/api/v2/pokemon?limit=15
 // https://app.quicktype.io
 
 export const MainScreen: React.FC = () => {
-  const filterContent = useContext(FilterContent);
   const [pokemonData, setPokemonData] = useState<Pokemon[] | undefined>(
     undefined
+  );
+
+  const { filter } = useSelector<RootState, IFilterState>(
+    (state) => state.filter
   );
 
   let body;
@@ -35,7 +40,7 @@ export const MainScreen: React.FC = () => {
         className="mt-2 container animate__animated animate__fadeIn"
       >
         {pokemonData.map((pd) => {
-          return getCard(pd, filterContent.filter);
+          return getCard(pd, filter);
         })}
       </div>
     );
