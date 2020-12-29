@@ -1,0 +1,43 @@
+body {
+  animation: 200ms;
+  height: 100vh;
+  width: 100vw;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#nav .input-group {
+  margin-left: 20px;
+  max-width: 250px;
+}
+
+#customCard {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#pokemonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#loadingSpinner {
+  height: 93%;
+  width: 100%;
+}
+
+#loadingSpinner .spinner-border {
+  height: 5rem;
+  width: 5rem;
+}
+
+#routerDiv {
+  height: 100%;
+  width: 100%;
+}
