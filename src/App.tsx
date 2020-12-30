@@ -5,9 +5,10 @@ import { FilterContent } from "./FilterContent";
 
 export default function App() {
   const [filter, setFilter] = React.useState<string>("");
+  const [history] = React.useState<string[]>([]);
 
   return (
-    <FilterContent.Provider value={{ filter, setFilter }}>
+    <FilterContent.Provider value={{ filter, setFilter, history }}>
       <PokedexRoutes />
     </FilterContent.Provider>
   );

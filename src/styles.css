@@ -41,3 +41,22 @@ body {
   height: 100%;
   width: 100%;
 }
+
+#historyList {
+  height: 200px;
+  width: 209px;
+  position: absolute;
+  background-color: white;
+  top: 46px;
+  left: 62px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  border-radius: 5px;
+  overflow-y: scroll;
+}
+
+.itemList:hover {
+  color: white;
+  background-color: black;
+}
